@@ -1,0 +1,51 @@
+---
+title: "R Notebook"
+output: html_notebook
+---
+
+```{r}
+install.packages("tidyverse")
+install.packages("readr")
+```
+
+```{r}
+library(tidyverse)
+library(readr)
+```
+
+```{r}
+Champion<- read_csv("champion_stats.csv")
+Champion
+
+little <- filter(Champion, hp > 600)
+little
+
+ggplot(data = little, mapping = aes(x = id, y = attack, fill = defense, bins = 15)) + geom_bar(stat = "identity") + labs(title = "Attack Vs. Defense", subtitle = "League of Legends Champions", x = "defense", y = "attack", caption = "Champion Data set")
+
+```
+```{r}
+ggplot(data = little, aes(x= defense, y = attack, fill= id)) + geom_bar(stat="identity", width=1) + coord_polar("y", start=0) + labs(title = "Attack Vs. Defense", subtitle = "League of Legends Champions", x = "id", y = "attack", caption = "Champion Data Set")
+
+```
+```{r}
+ggplot(data = little, aes(x= defense, y = attack, color = id, size = 5)) + geom_point() + labs(title = "Attack Vs. Defense", subtitle = "League of Legends Champions", x = "id", y = "attack", caption = "Champion Data Set")
+```
+
+
+
+
+```{r}
+ggplot(data = little, aes(x= defense, y = attack)) + geom_line() + labs(title = "Attack Vs. Defense", subtitle = "League of Legends Champions", x = "id", y = "attack", caption = "Champion Data Set")
+```
+```{r}
+ggplot(data = little) + geom_histogram(mapping = aes(x = attack), fill = "orange", color = "black", bins = 15) + labs(title = "Attack Vs. Defense", subtitle = "League of Legends Champions", x = "Attack", y = "Defense", caption = "Champion Data Set")
+```
+```{r}
+ggplot(data = little, mapping = aes(x = attack , y = defense)) + geom_violin(fill = "orange", color = "black")+ labs(title = "Attack Vs. Defense", subtitle = "League of Legends Champions", y = "Defense", x = "Attack", caption = "Champion Data Set")
+```
+```{r}
+ggplot(data = little, mapping = aes(x = magic, y = key, fill = id)) + geom_boxplot()+ labs(title = "Attack Vs. Defense", subtitle = "League of Legends Champions", x = "Attack", y = "Defense", caption = "Champion Data Set")
+```
+
+
+
